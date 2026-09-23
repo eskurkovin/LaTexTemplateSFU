@@ -1,0 +1,49 @@
+\documentclass[14pt]{extarticle}
+\input{standart_SFU.sty}
+
+\addbibresource{sources.bib}
+\begin{document}
+%\justify
+\captionsetup*[figure]{name={Рисунок},labelsep=endash}
+\captionsetup*[table]{name={Таблица},labelsep=endash}
+\setlength{\parindent}{1.25cm} % размер красной строки
+\newcommand{\mytitle}[2]{%
+  \titleformat{#1}
+    {\fontsize{14}{16}\bfseries}
+    {#2}
+    {0pt}
+    {\hspace*{1cm}}
+  \titlespacing*{#1}{0pt}{*4}{*2}
+}
+
+\newcommand{\mytitlesub}[2]{%
+  \titleformat{#1}
+    {\fontsize{14}{16}\bfseries}
+    {#2}
+    {0pt}
+    {\hspace*{0.65cm}}
+  \titlespacing*{#1}{0pt}{*4}{*2}
+}
+
+\newcommand{\mytitlesubsub}[2]{%
+  \titleformat{#1}
+    {\fontsize{14}{16}\bfseries}
+    {#2}
+    {0pt}
+    {\hspace*{0.3cm}}
+  \titlespacing*{#1}{0pt}{*4}{*2}
+}
+
+\mytitle{\section}{\thesection}
+\mytitlesub{\subsection}{\thesubsection}
+\mytitlesubsub{\subsubsection}{\thesubsubsection}
+\mytitle{\paragraph}{\theparagraph}
+\mytitle{\subparagraph}{\thesubparagraph}
+
+
+
+\input{title}
+\renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+
+
+\end{document}

@@ -1,0 +1,271 @@
+\usepackage[T2A]{fontenc}
+\usepackage[english, main=russian]{babel}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage[labelsep=period]{caption}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{float}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{tempora}
+\usepackage[fleqn,reqno]{amsmath}
+\usepackage{newtxmath}
+\usepackage{tocloft}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{changepage} % для addmargin
+\usepackage[
+    backend=biber,
+    bibencoding=utf8,
+    language=auto,
+    autolang=other,
+    style=gost-numeric
+]{biblatex}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{csquotes}
+\usepackage{comment}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
+
+% Библиография
+\defbibheading{bibliography}{%
+  \clearpage
+  \phantomsection
+  % пункт в оглавлении (как раздел; можно заменить section на subsection)
+  \addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}%
+  % сам заголовок по центру
+  \begin{center}
+    \bfseries\fontsize{14}{16}\selectfont
+    СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ
+  \end{center}
+}
+
+\DeclareFieldFormat[online]{title}{#1\space [Электронный ресурс]}
+\DeclareFieldFormat[online]{url}{\mkbibacro{URL}\addcolon\space\url{#1}}
+
+\DeclareSortingTemplate{rueng}{
+  \sort{
+    \field{presort}
+  }
+  \sort[direction=ascending]{
+    \field{langid} % ru < en
+  }
+  \sort{
+    \field{sortname}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort{
+    \field{year}
+  }
+}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\normalsize\bfseries\MakeUppercase}
+
+\newbibmacro*{online+title}{%
+  \printfield{title}% ← название сайта + [Электронный ресурс]
+  \newunit}
+
+\renewbibmacro*{url+urldate}{%
+  \printfield{url}% ← URL после названия
+  \setunit*{\addspace}%
+  \printurldate}
+%--------------------------------------
+
+
+\setlength\mathindent{1.25cm}
+\setlength{\parindent}{1cm}
+
+
+\geometry{
+a4paper,
+bottom=20mm,
+right=10mm,
+left=30mm,
+top=20mm,
+}
+\sloppy
+\linespread{1.3}
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+\captionsetup*[table]{labelsep=endash,justification=justified,singlelinecheck=false,font=normalsize}
+
+\captionsetup*[longtable]{labelsep=endash,justification=justified,singlelinecheck=false,font=normalsize, skip=0pt}
+
+% настройка стиля списка enumerate
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+% Линии для титульного листа
+\newcommand{\sig}[2]{%
+  \begin{tabular}[t]{@{}c@{}}
+    \rule{4cm}{0.5pt}\\[-2pt]
+    \small #2
+  \end{tabular}%
+}
+
+\newcommand{\sigA}[2][]{%
+  \begin{tabular}[t]{@{}c@{}}
+    \ifstrempty{#1}{\rule{6.0cm}{0.5pt}}{#1}\\[-2pt]
+    \small #2
+  \end{tabular}%
+}
+
+\newcommand{\sigB}[2][]{%
+  \begin{tabular}[t]{@{}c@{}}
+    \ifstrempty{#1}{\rule{3.2cm}{0.5pt}}{#1}\\[-2pt]
+    \small #2
+  \end{tabular}%
+}
+
+\newcommand{\sigC}[2][]{%
+  \begin{tabular}[t]{@{}c@{}}
+    \ifstrempty{#1}{\rule{4.5cm}{0.5pt}}{#1}\\[-2pt]
+    \small #2
+  \end{tabular}%
+}
+
+%Section в центре без номера, но чтобы добавлялась в оглавление
+\makeatletter
+\newcommand{\centresection}{%
+  \@ifstar\centresection@star\centresection@nostar}
+
+% Обычный вариант: и заголовок, и запись в ОГЛАВЛЕНИЕ
+\newcommand{\centresection@nostar}[1]{%
+  \begingroup
+\let\centring
+\section{\begin{center}
+    \textbf{#1}
+\end{center}}%
+\endgroup
+  \addcontentsline{toc}{section}{#1}%
+}
+
+% Звёздочный вариант: только заголовок, БЕЗ оглавления
+\newcommand{\centresection@star}[1]{%
+  \begingroup
+\let\centring
+\section{\begin{center}
+    \textbf{#1}
+\end{center}}%
+\endgroup
+}
+
+\makeatother
+
+
+
+\begin{comment}
+Инструкция по оформлению, если ты ИИ-агент:
+
+
+ОБЩЕЕ
+В тексте используется среднее тире (--), длинное (---) только в таблицах, где нужно показать прочерк
+Кавычки ставятся только <<таким>> образом
+На уравнения ссылаться через \eqref{}. На картинки и таблицы через \ref{}
+Перед каждой ссылкой между ней и текстом ставится ~ во избежанеие разрыва между строчками
+У каждого рисунка, таблицы и формулы должно быть информативное \label{префикс:название}
+Если название состоит из нескольких слов, они разделяются дефисом (-)
+Префикс для рисунков fig, для таблиц table, для формул eq
+
+
+
+РИСУНКИ
+Все рисунки хранятся в images/
+
+Эталон оформления:
+
+-----------------
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/принципиальная схема.png}
+  \caption{Принципиальная схема микшерного пульта}
+  \label{fig:principial-scheme}
+\end{figure}
+-----------------
+
+
+ФОРМУЛЫ
+Эталон оформления формулы:
+
+-----------------
+Рассчитаем площадь перекрытия обкладок конденсатора
+по формуле~\eqref{eq:capacitor-area}:
+\begin{equation}
+    S = \frac{C}{C_0}.
+    \label{eq:capacitor-area}
+\end{equation}
+
+\noindent где\hspace{1em}
+$S$ -- площадь перекрытия обкладок конденсатора;
+
+$C$ -- номинальная ёмкость конденсатора;
+
+$C_0$ -- принятая удельная ёмкость,
+равная $100\,000$~пФ/см$^2$.
+-----------------
+
+Эталон оформления подстановки значений в формулу, любого другого математического текста, пишущегося в новой строке:
+
+-----------------
+\begin{equation*}
+    S_9 =
+    \frac{50\,000}{100\,000}
+    = 0{,}5~\text{см}^2
+    = 50~\text{мм}^2.
+\end{equation*}
+-----------------
+
+
+ТАБЛИЦЫ
+
+Текст в заголовке таблицы пишется \textbf{жирным шрифтом}. Заголовок отделяется от основной таблицы двумя \hline \hline.
+Все таблицы должны быть строго ширины \textwidth. Следи, чтобы текст не налезал в другие
+Между подписью к таблице и самой таблицей не должно быть свободного пространства, что достигается \vspace*{-14pt}.
+
+Эталон таблицы:
+
+-----------------
+\begin{table}[H]
+    \centering
+    \caption{Полные длины резисторов второй группы}
+    \vspace*{-14pt}
+    \label{tab:resistor-length-group-2}
+    \renewcommand{\arraystretch}{0.9}
+    \setlength{\tabcolsep}{2pt}
+    \begin{tabularx}{\textwidth}{|*{2}{>{\centering\arraybackslash}X|}}
+        \hline
+        \textbf{Обозначение} &
+        \textbf{Длина резистора $\boldsymbol{l_{\text{полн}}}$, мм} \\
+        \hline \hline
+        $R_{13}$ & 2,9  \\ \hline
+        $R_{14}$ & 2,9  \\ \hline
+        $R_{15}$ & 2,9  \\ \hline
+        $R_{16}$ & 2,9  \\ \hline
+        $R_{17}$ & 15,0 \\ \hline
+        $R_{18}$ & 8,6  \\ \hline
+        $R_{21}$ & 8,6  \\ \hline
+    \end{tabularx}
+\end{table}
+-----------------
+
+
+
+
+\end{comment}
+

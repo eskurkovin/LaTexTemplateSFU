@@ -1,0 +1,58 @@
+# ======================
+# macOS
+# ======================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# ======================
+# VS Code
+# ======================
+.vscode/
+
+# ======================
+# LaTeX (latexmk / pdflatex)
+# ======================
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# ======================
+# Build directory
+# ======================
+build/
+
+
+# PDF
+# *.pdf
+
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py,cover
+
+# виртуальные окружения
+.venv/
+venv/
+env/
