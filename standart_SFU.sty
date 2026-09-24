@@ -112,35 +112,32 @@ top=20mm,
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 
 % Линии для титульного листа
-\newcommand{\sig}[2]{%
+\newsavebox{\sigcaptionbox}
+\newcommand{\sig}[2][]{%
+  \sbox{\sigcaptionbox}{\small #2}%
   \begin{tabular}[t]{@{}c@{}}
-    \rule{4cm}{0.5pt}\\[-2pt]
+    \ifstrempty{#1}{\rule{\dimexpr\wd\sigcaptionbox+1.5em\relax}{0.5pt}}{#1}\\[-2pt]
     \small #2
   \end{tabular}%
 }
 
-\newcommand{\sigA}[2][]{%
-  \begin{tabular}[t]{@{}c@{}}
-    \ifstrempty{#1}{\rule{6.0cm}{0.5pt}}{#1}\\[-2pt]
-    \small #2
-  \end{tabular}%
-}
-
+% Эта линия без промежутка между текстом под и над ней (вплотную)
 \newcommand{\sigB}[2][]{%
+  \sbox{\sigcaptionbox}{\small #2}%
   \begin{tabular}[t]{@{}c@{}}
-    \ifstrempty{#1}{\rule{3.2cm}{0.5pt}}{#1}\\[-2pt]
+    \ifstrempty{#1}{\rule{\dimexpr\wd\sigcaptionbox+1.5em\relax}{0.5pt}}{#1}\\[-12pt]
     \small #2
   \end{tabular}%
 }
 
-\newcommand{\sigC}[2][]{%
-  \begin{tabular}[t]{@{}c@{}}
-    \ifstrempty{#1}{\rule{4.5cm}{0.5pt}}{#1}\\[-2pt]
-    \small #2
-  \end{tabular}%
+% Тупо строчка с датой
+\newcommand{\sigDate}{%
+  «\rule[-0.3ex]{1cm}{0.5pt}»\enspace
+  \rule[-0.3ex]{2.2cm}{0.5pt}\enspace
+  20\rule[-0.3ex]{0.8cm}{0.5pt}\,г.%
 }
 
-%Section в центре без номера, но чтобы добавлялась в оглавление
+% Section в центре без номера, но чтобы добавлялась в оглавление
 \makeatletter
 \newcommand{\centresection}{%
   \@ifstar\centresection@star\centresection@nostar}
