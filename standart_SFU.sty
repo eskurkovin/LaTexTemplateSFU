@@ -74,9 +74,18 @@
 
 \renewcommand{\cftdotsep}{1}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
 % Обычное начертание названий разделов и номеров страниц в содержании.
 \renewcommand{\cftsecfont}{\normalfont}
 \renewcommand{\cftsecpagefont}{\normalfont}
+% Единый межстрочный интервал: без дополнительных отбивок между пунктами.
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+% Горизонтальные отступы уровней содержания уменьшены вдвое.
+\setlength{\cftsubsecindent}{0.75em}
+\setlength{\cftsubsubsecindent}{1.9em}
+
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\normalsize\bfseries\MakeUppercase}
 
 \newbibmacro*{online+title}{%
