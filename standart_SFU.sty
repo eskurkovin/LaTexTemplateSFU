@@ -74,6 +74,9 @@
 
 \renewcommand{\cftdotsep}{1}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% Обычное начертание названий разделов и номеров страниц в содержании.
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\normalsize\bfseries\MakeUppercase}
 
 \newbibmacro*{online+title}{%
@@ -200,7 +203,7 @@ top=20mm,
 
 
 ФОРМУЛЫ
-Обрати внимание на блок после формулы. Специальная конструкция для "где"; пояснение, что обозначает каждая буква, начинается с новой строчки.
+Обрати внимание на блок после формулы. Специальная конструкция для "где"; пояснение, что обозначает каждая буква, начинается с новой строчки. Знак равно (=) всегда отделяется знаком пробела.
 Эталон оформления формулы:
 
 -----------------
